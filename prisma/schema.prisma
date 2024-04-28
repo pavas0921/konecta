@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:12345*@localhost:5432/db_konecta"
+}
+
+model empleados {
+  id            Int           @id @default(autoincrement())
+  fecha_ingreso DateTime?     @db.Date
+  nombre        String?       @db.VarChar(100)
+  salario       Decimal?      @db.Decimal(10, 2)
+  solicitudes   solicitudes[]
+}
+
+model roles {
+  id         Int        @id @default(autoincrement())
+  nombre_rol String?    @unique @db.VarChar(50)
+  usuarios   usuarios[]
+}
+
+model solicitudes {
+  id          Int        @id @default(autoincrement())
+  codigo      String?    @unique @db.VarChar(50)
+  descripcion String?
+  resumen     String?
+  id_empleado Int?
+  empleados   empleados? @relation(fields: [id_empleado], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model usuarios {
+  id         Int     @id @default(autoincrement())
+  nombre     String? @db.VarChar(100)
+  email      String? @unique @db.VarChar(100)
+  contrase_a String? @map("contraseña") @db.VarChar(100)
+  rol_id     Int
+  roles      roles   @relation(fields: [rol_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
