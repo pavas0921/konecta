@@ -1,9 +1,9 @@
 Instrucciones para ejecución del aplicativo. 
 
 Se requiere instalar el motor de bases de datos postgresql.
-usuario: postgres
-contraseña: 12345*
-nombre bd: db_konecta
+usuario: postgres,
+contraseña: 12345*,
+nombre bd: db_konecta,
 
 Luego de clonar el repositorio en su ambiente, es necesario instalar todas las dependencias con el comando npm install. 
 Luego de instaladas todas las dependencias es necesario ejecutar el comando npx prisma db pull, este comando creara la estructura de las tablas en la base de datos.
