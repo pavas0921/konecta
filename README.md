@@ -29,5 +29,10 @@ ejemplo del body:
 "rol_id": 2
 }
 
+La aplicación se ejecuta a tráves del comando npm run dev. 
+
+Se utilizó prisma como ORM para el mapeo de entidades tablas, ademas de contribuir a la seguridad del aplicativo, previniendo inyecciones SQL.
+Se utilizó JWT para la generación de token de acceso y gestion de roles. 
+
 Luego de esto ya sera posible acceder a la aplicación por medio de un navegador web, despues de haber clonado y descargado el front end de la app. 
 
