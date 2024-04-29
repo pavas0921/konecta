@@ -13,17 +13,22 @@ export const login = async (req, res, next) => {
       },
     });
 
-    const isValidUser = bcrypt.compareSync(contrase_a, user.contrase_a);
-    if (isValidUser) {
-      req.body.user = user;
-      next();
+    if (user) {
+      const isValidUser = bcrypt.compareSync(contrase_a, user.contrase_a);
+      if (isValidUser) {
+        req.body.user = user;
+        next();
+      } else {
+        res
+          .status(401)
+          .json({ httpStatus: 401, message: "User or password incorrect" });
+      }
     } else {
       res
         .status(401)
-        .json({ error: true, message: "User or password incorrect" });
+        .json({ httpStatus: 401, message: "User or password incorrect" });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error });
   }
 };

@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const getAllEmployees = async (req, res) => {
-  console.log("req", req.body);
   try {
     const employees = await prisma.empleados.findMany();
     if (employees.length >= 1) {
@@ -12,7 +11,6 @@ export const getAllEmployees = async (req, res) => {
       res.status(204).json({ error: true, content: employees });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: true });
   }
 };
@@ -45,7 +43,6 @@ export const createEmployee = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       httpStatus: 500,
       message: "Ocurrió un error al registrar el usuario",

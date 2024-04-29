@@ -27,7 +27,6 @@ export const getAllRequest = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       httpStatus: 500,
       message: "Ocurrio un error al mostrar las solicitudes",
@@ -40,7 +39,7 @@ export const createRequest = async (req, res) => {
     const { codigo, descripcion, resumen, id_empleado, user_rol } = req.body;
     if (user_rol === 1) {
       const request = await prisma.solicitudes.create({
-        data: { codigo, descripcion, resumen, id_empleado },
+        data: { codigo, descripcion, resumen, id_empleado: +id_empleado },
       });
       if (request) {
         res.status(201).json({
@@ -63,7 +62,6 @@ export const createRequest = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       httpStatus: 500,
       message: "Ocurrió un error al registrar la Solicitud",

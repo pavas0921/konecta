@@ -17,7 +17,6 @@ export const verifyToken = (req, res, next) => {
         next();
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         httpStatus: 500,
         message: "Ocurrió un error al validar el token",

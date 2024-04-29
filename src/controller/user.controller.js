@@ -26,7 +26,6 @@ export const createUser = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       httpStatus: 500,
       message: "Ocurrió un error al ingresar el usuario",
@@ -86,13 +85,11 @@ export const updateUser = async (req, res) => {
       res.status(400).json(error);
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: true });
   }
 };
 
 export const deleteUser = async (req, res) => {
-  console.log("hola");
   try {
     const { id } = req.params;
     const deleted = await prisma.user.delete({
